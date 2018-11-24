@@ -2,6 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/tetafro/sqlmon.svg?style=shield)](https://circleci.com/gh/tetafro/sqlmon)
 [![Codecov](https://codecov.io/gh/tetafro/sqlmon/branch/master/graph/badge.svg)](https://codecov.io/gh/tetafro/sqlmon)
+[![Release](https://img.shields.io/github/tag/tetafro/sqlmon.svg)](https://github.com/tetafro/sqlmon/releases)
 
 Wrapper for `database/sql` with callbacks for driver operations.
 
