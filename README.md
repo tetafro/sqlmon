@@ -1,5 +1,7 @@
 # sqlmon
 
+[![CircleCI](https://circleci.com/gh/tetafro/sqlmon.svg?style=shield)](https://circleci.com/gh/tetafro/sqlmon)
+
 Wrapper for `database/sql` with callbacks for driver operations.
 
 ## Usage

@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/golang:1.10
+    working_directory: /go/src/github.com/tetafro/sqlmon
+    steps:
+      - checkout
+      - run:
+          name: Run tests
+          command: go test ./...
+workflows:
+  version: 2
+  main:
+    jobs:
+      - test
