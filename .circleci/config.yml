@@ -1,16 +1,44 @@
 version: 2
 jobs:
-  test:
+  dep:
     docker:
       - image: circleci/golang:1.10
     working_directory: /go/src/github.com/tetafro/sqlmon
     steps:
       - checkout
+      - persist_to_workspace:
+          root: /go/src/github.com/tetafro
+          paths:
+            - sqlmon
+  test:
+    docker:
+      - image: circleci/golang:1.10
+    working_directory: /go/src/github.com/tetafro/sqlmon
+    steps:
+      - attach_workspace:
+          at: /go/src/github.com/tetafro
       - run:
           name: Run tests
           command: go test ./...
+  codecov:
+    docker:
+      - image: circleci/golang:1.10
+    working_directory: /go/src/github.com/tetafro/sqlmon
+    steps:
+      - attach_workspace:
+          at: /go/src/github.com/tetafro
+      - run: ./.circleci/codecov.sh
+      - run: bash <(curl -s https://codecov.io/bash)
 workflows:
   version: 2
   main:
     jobs:
-      - test
+      - dep
+      - test:
+          requires:
+            - dep
+      - codecov:
+          requires:
+            - dep
+            - test
+          context: codecov
