@@ -41,4 +41,3 @@ workflows:
           requires:
             - dep
             - test
-          context: codecov
